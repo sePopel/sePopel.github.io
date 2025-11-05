@@ -1,0 +1,7 @@
+@"
+.venv/
+site/
+__pycache__/
+*.pyc
+.DS_Store
+"@ | Out-File -Encoding utf8 .gitignore
