@@ -1,6 +1,6 @@
 site_name: GPU Fog of War (UE5)
-site_url: https://example.github.io/fow-docs
-repo_url: https://github.com/example/fow-docs
+site_url: https://sepopel.github.io/
+repo_url: https://github.com/sePopel/sePopel.github.io
 theme:
   name: material
   features:

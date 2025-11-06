@@ -17,3 +17,6 @@ The subsystem uses pooled render targets and cleans up on world transitions. You
 ## Profiling
 - Use **stat GPU** and **stat unitgraph** to validate cadence/blur choices.
 - Toggle features at runtime to identify the biggest wins (Blocker capture vs Circle, blur, cadence).
+
+
+the smoother the better, bcus many upsampling steps with smoothing possibilities..  allowin to do the compute steps on lower resoluition
