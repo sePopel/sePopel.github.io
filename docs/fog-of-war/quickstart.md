@@ -49,8 +49,10 @@ The **FOW Manager** sets up different, premade Fog Variants and interacts with t
     - **Fade Seconds**: Controls the fade-in/out time of the actor.
     - **Fade Material Param**: The parameter that gets controlled in the actors materials
 
+If you want the actor to smoothly fade in/out, you need to control its opacity with an correctly named scalar material parameter.
+
 ---
-### Manual Steps (no helpers)
+## Manual Steps (no helpers)
 
 If you prefer full control, you can drive the Fog of War **entirely via the Subsystem** and your own materials. All functions are available via Blueprint and C++.
 
@@ -76,6 +78,7 @@ If you prefer full control, you can drive the Fog of War **entirely via the Subs
 Ask the subsystem for a **shared MID** bound to the fog instance and apply it anywhere. The subsystem will try to update the defined parameters in the MID.
 
 To make setting up your own fog materials easier, the plugin provides a material function containing the default parameters for the subsystem. It calculates multiple different values convenient for your custom materials:
+
 - **Blueprint:** ` FOW->AcquireSharedMIDForFogInstance("Main", Base)`
 - **C++:**
   ```cpp
@@ -96,14 +99,18 @@ To make setting up your own fog materials easier, the plugin provides a material
 
 ### 4) Add Occluders (what blocks vision)
 Occlusion can be done in two ways, either by a circle or by a scene capture. Circular occlusion can be added as follows:
+
 - **Circular Occlusion around Actor:** `RegisterBlocker(Actor, Radius)` / `UnregisterBlocker`
 - **Static:** `AddStaticBlocker(WorldPos, RangeWS)` → handle; later `RemoveStaticBlocker(Handle)`
 
 If the scene capture is set to only work with specific actors, you need to register them:
+
 - **Register Capture Writer:** `RegisterCaptureWriter(Actor, CaptureName)` / `UnregisterCaptureWriter`
 
 ### 5) Stealth / Ghosts (actors reacting to fog)
 - **Register:** `RegisterStealthActor(Actor, HiddenMode, VisibilityPolicy)` / `UnregisterStealthActor(Actor)`
+
+Contrary to the other helper components, using the stealth component comes with some features, which are not available without using it. This includes a callback when the actor is no longer visible, as well as a smooth fade-in/out.
 
 ---
 
@@ -112,9 +119,10 @@ If the scene capture is set to only work with specific actors, you need to regis
 
 ## Subsystem usage - additional quick pointers
  **The Subsystem is the main entry point for all fog-related functionality. It is accessible via Blueprint and C++.**
+
  - Get it in BP/C++: `GetWorld()->GetSubsystem<UFogOfWarSubsystem>()`
 
-### Per-Layer Runtime Controls (visuals, blending, perf)
+### Per-FogInstance Runtime Controls (visuals, blending, perf)
 - **Toggles:** `SetFogInstanceEnabled`, `SetFogInstanceShowFog`, `SetFogInstanceShowMemory`, `SetFogInstanceFreezeState`, `SetFogInstanceFreezeMemory`
 - **Visual:** `SetFogInstanceExploredValue`, `SetFogInstanceActorVisibilityThreshold`, `SetFogInstanceSmoothFalloff`, `SetFogInstanceBlurIterations/Radius/Sigma`
 - **Blending:** `SetFogInstanceTransitionMode`, `SetFogInstanceFadeInRate`, `SetFogInstanceRelaxRate`, `SetFogInstanceForgetRate`
@@ -122,10 +130,12 @@ If the scene capture is set to only work with specific actors, you need to regis
 
 ### Queries (AI/gameplay)
 Ask the GPU for **final visibility** at world positions:
+
 - **Single (latent):** `CheckPointVisibility(WorldPos, bVisible, Value, Threshold)`
 - **Batched (latent):** `CheckPointsVisibility(WorldPositions, OutVisible, OutValues, Threshold)`
 - **Advanced handles:** `StartPositionQuery_Auto(...)` → `PollPositionQueryResults(...)`
- Use a **negative Threshold** to auto-use the layer’s cutoff. Prefer **batched** queries over many singles for performance.
+
+ Use a **negative Threshold** to auto-use the fog instance’s cutoff. Prefer **batched** queries over many singles for performance.
 
 
 **Next**: read [Performance](performance.md) to keep an eye on the most important performance wins.

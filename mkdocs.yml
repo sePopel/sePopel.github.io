@@ -34,6 +34,12 @@ markdown_extensions:
 plugins:
   - search
   - glightbox
+  - mkdocs-video:
+      is_video: true        # use <video> instead of <iframe>
+      video_controls: true
+      video_muted: true     # optional: helps if you later enable autoplay
+      css_style:
+        width: "100%"
   - minify:
       minify_html: true
 nav:
@@ -42,7 +48,7 @@ nav:
       - Quickstart: fog-of-war/quickstart.md
       - Concepts: fog-of-war/concepts.md
       - API: fog-of-war/api.md
-      - Performance: fog-of-war/performance.md
+      - Practical Notes/Performance: fog-of-war/performance.md
       - FAQ: fog-of-war/faq.md
 extra:
   social:

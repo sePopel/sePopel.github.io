@@ -19,13 +19,31 @@ It is also Blueprint‑friendly and multiplayer‑safe.
 
 > ⚙️ **Supported**: UE5.x 
 
-## Example Project
+## Examples
 
-The available Example Project allows to play around with four different Fog Variants and the most important runtime settings via Widgets. The following screenshot shows Vision Sources (white cylinders), Actors hiding within the fog (green cubes), Actors freezing within the fog (orange spheres) and Actors occluding the vision.
+Here a short, visual overview of the plugin's capabilities. The first part goes over the technical capabilities, while the second part shows the fidelity achieveable with the plugin.
+
+### Example Project
+
+The available Example Project allows to play around with four different Fog Variants and the most important runtime settings via Widgets. It serve as an example to quickly learn how to use the different parts of the plugin.
+
+The following screenshot shows Vision Sources (white cylinders), Actors hiding within the fog (green cubes), Actors freezing within the fog (orange spheres) and Actors occluding the vision. The top left fog is done with an volumetric material inside a box, the top right with a light function, the bottom left with layered meshes and the bottom right with a post-process material.
 
 ![Overview](images/Overview.png)
 
-## In-Game Screenshots
+This Video shows the four different Fog Variants in action, using the default settings. It shows off the occluion, the freeze or hide mechanics, the memory system and the fade in and out of the fog.
+
+![type:video](videos/All Preview.mp4)
+
+In this video you can better see the occlusion and how the actors react to the fog.
+
+![type:video](videos/Actors Preview.mp4)
+
+This final video goes over different settings and shows how they affect the fog. Additionally, it visualizes the underlying state of the used render target.
+
+![type:video](videos/Settings Preview.mp4)
+
+### In-Game Screenshots
 
 The following screenshots show different Fog Variants achieved with the plugin within our game "Obscura". The four variants are:
 
@@ -36,7 +54,7 @@ The following screenshots show different Fog Variants achieved with the plugin w
 
 The Fog Types are shown in this order (except volumetric box) and are also easily setup using the Plugins *FOW-Manager*. However, fully customized Fog Types can be created using the plugin's API.
 
-### Layered Meshes
+#### Layered Meshes
 
 This cheap "fake" volumetric fog is achieved by layering multiple meshes on top of each other. This type of fog is allows for high fidelity with good performance, but breaks down when looking at it from too steep angles.
 
@@ -46,7 +64,7 @@ This cheap "fake" volumetric fog is achieved by layering multiple meshes on top 
 ![In-Game Screenshot Layered Meshes](images/LayeredFog4.png)
 ![In-Game Screenshot Layered Meshes](images/LayeredFog5.png)
 
-### Light
+#### Light
 
 By using Unreal's Light Function, the system can block light within unseen areas.
 
@@ -55,7 +73,7 @@ By using Unreal's Light Function, the system can block light within unseen areas
 ![In-Game Screenshot Light-Function](images/Light3.png)
 ![In-Game Screenshot Light-Function](images/Light4.png)
 
-### Post-Process
+#### Post-Process
 The system can also be used to create Post-Process effects to hide invisible areas.
 
 ![In-Game Screenshot Post-Process](images/PP1.png)
