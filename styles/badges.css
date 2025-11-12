@@ -1,0 +1,4 @@
+.badge { padding: .15em .5em; border-radius: .5rem; font-size: .85em; font-weight: 600; }
+.badge-ok { background: #e6f4ea; color: #137333; }
+.badge-warn { background: #fff4e5; color: #8a4b00; }
+.badge-bad { background: #fdecea; color: #b00020; }
